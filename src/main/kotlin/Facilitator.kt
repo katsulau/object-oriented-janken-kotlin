@@ -4,7 +4,6 @@ class Facilitator(
     private val ranking: Ranking
 ) {
     fun startJanken() {
-        // じゃんけんを開始する
 
         val jankenPlayerGroup = JankenPlayerGroup(players)
         match(jankenPlayerGroup)
@@ -14,9 +13,9 @@ class Facilitator(
     }
 
     private fun match(jankenPlayerGroup: JankenPlayerGroup) {
+        println("じゃんけんポン!")
         // じゃんけんの手を出す
         val playerHands = jankenPlayerGroup.showHands()
-
         // 勝敗確認
         var result = judgement.judge(playerHands)
         var matchResultType = result.first().value.second

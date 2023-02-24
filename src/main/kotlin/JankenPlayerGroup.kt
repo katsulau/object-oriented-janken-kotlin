@@ -1,13 +1,13 @@
 class JankenPlayerGroup(
     private val players: List<Player>
 ) {
-    fun showHands():List<PlayerHand> {
+    fun showHands(): PlayerHands {
 
         val playerHands = mutableListOf<PlayerHand>()
         players.forEach {
             val playerHand = it.showHand()
             playerHands.add(playerHand)
         }
-        return playerHands.toList()
+        return PlayerHands(playerHands.toList())
     }
 }
