@@ -3,7 +3,7 @@ import java.lang.StringBuilder
 class Player(
     val name: String,
 ) {
-    private val record: List<MatchResultType> = listOf()
+    private val record: MutableList<MatchResultType> = mutableListOf()
 
     fun showHand(): PlayerHand {
         // じゃんけんの手を選択する
@@ -16,7 +16,7 @@ class Player(
 
     fun recordResult(result: MatchResultType) {
         // じゃんけんの勝敗を記録する
-        record.plus(result)
+        record.add(result)
     }
 
 

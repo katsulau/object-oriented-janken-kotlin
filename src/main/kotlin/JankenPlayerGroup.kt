@@ -3,12 +3,11 @@ class JankenPlayerGroup(
 ) {
     fun showHands():List<PlayerHand> {
 
-        val playerHands = listOf<PlayerHand>()
+        val playerHands = mutableListOf<PlayerHand>()
         players.forEach {
             val playerHand = it.showHand()
-            playerHands.plus(playerHand)
+            playerHands.add(playerHand)
         }
-
-        return playerHands
+        return playerHands.toList()
     }
 }

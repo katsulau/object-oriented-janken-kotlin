@@ -3,12 +3,12 @@ import java.lang.StringBuilder
 class Ranking {
 
     fun rank(players: List<Player>) {
-        val showPlayResults = listOf<String>()
-        val showPlayResultMap = mapOf<String, Player>()
+        val showPlayResults = mutableListOf<String>()
+        val showPlayResultMap = mutableMapOf<String, Player>()
 
         players.forEach {
-            showPlayResults.plus(it.showPlayResult())
-            showPlayResultMap.plus(Pair(it.showPlayResult(), it))
+            showPlayResults.add(it.showPlayResult())
+            showPlayResultMap[it.showPlayResult()] = it
         }
 
 
