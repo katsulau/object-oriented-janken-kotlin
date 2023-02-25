@@ -23,10 +23,14 @@ class Facilitator(
 
         // もし引き分けなら、再度じゃんけんする
         while (result.isDraw()) {
+            println("引き分け")
             // じゃんけんの手を出す
-            val playerHands = jankenPlayerGroup.showHands()
+            println("じゃんけんポン!")
+            val nextPlayerHands = jankenPlayerGroup.showHands()
+            println(nextPlayerHands.getPlayerHands())
+
             // 勝敗確認
-            result = judgement.judge(playerHands)
+            result = judgement.judge(nextPlayerHands)
         }
 
         // 勝敗ごとでグループを分ける
