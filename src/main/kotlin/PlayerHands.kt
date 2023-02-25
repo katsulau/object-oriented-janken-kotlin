@@ -43,10 +43,17 @@ class PlayerHands(
         values.forEach { it.value.first.recordResult(matchResultType) }
     }
 
-    fun getPlayerJudgeResult(matchResultType: MatchResultType): List<PlayerJudgeResult> {
-        return values.map { playerHand ->
+    fun getPlayerJudgeResult(matchResultType: MatchResultType): PlayerJudgeResults {
+        val results = values.map { playerHand ->
             val pair = Pair(playerHand.value.first, matchResultType)
             PlayerJudgeResult(pair)
         }.toList()
+        return PlayerJudgeResults(results)
+    }
+
+    fun getPlayerHands(): String {
+        val stringBuilder = StringBuilder()
+        values.forEach { stringBuilder.append("${it.value.first.name}:${it.value.second.japaneseName} ") }
+        return stringBuilder.toString()
     }
 }

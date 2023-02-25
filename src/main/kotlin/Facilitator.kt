@@ -16,38 +16,33 @@ class Facilitator(
         println("じゃんけんポン!")
         // じゃんけんの手を出す
         val playerHands = jankenPlayerGroup.showHands()
+        println(playerHands.getPlayerHands())
+
         // 勝敗確認
         var result = judgement.judge(playerHands)
-        var matchResultType = result.first().value.second
 
         // もし引き分けなら、再度じゃんけんする
-        while (matchResultType == MatchResultType.DRAW) {
+        while (result.isDraw()) {
             // じゃんけんの手を出す
             val playerHands = jankenPlayerGroup.showHands()
-
             // 勝敗確認
             result = judgement.judge(playerHands)
-            matchResultType = result.first().value.second
         }
 
         // 勝敗ごとでグループを分ける
-        val winnerGroup = result.filter { it.value.second == MatchResultType.WIN }.toList()
-        val loserGroup = result.filter { it.value.second == MatchResultType.LOSE }.toList()
+        val winnerGroup = result.filterWinners()
+        println("勝ち: ${winnerGroup.getPlayerNames()}")
 
-        val isNotOneWinner = winnerGroup.size != 1
-        val isNotOneLoser = loserGroup.size != 1
+        val loserGroup = result.filterLosers()
+        println("負け: ${loserGroup.getPlayerNames()}")
 
         // 2人以上のグループでプレイ続行
-        if (isNotOneWinner) {
-            val winners = winnerGroup.map { it.value.first }.toList()
-            val winnerPlayerGroup = JankenPlayerGroup(winners)
-            match(winnerPlayerGroup)
+        if (winnerGroup.size() > 1) {
+            match(winnerGroup.createJankenPlayerGroup())
         }
 
-        if (isNotOneLoser) {
-            val losers = loserGroup.map { it.value.first }.toList()
-            val loserPlayerGroup = JankenPlayerGroup(losers)
-            match(loserPlayerGroup)
+        if (loserGroup.size() > 1) {
+            match(loserGroup.createJankenPlayerGroup())
         }
     }
 }

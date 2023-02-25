@@ -3,7 +3,7 @@ class Judgement {
     /**
      * じゃんけんの勝敗を判定する
      */
-    fun judge(playerHands: PlayerHands): List<PlayerJudgeResult> {
+    fun judge(playerHands: PlayerHands): PlayerJudgeResults {
 
         // もし、全員が同じ手を出していたらドロー
         if (playerHands.isAllSameHandType()) {
@@ -40,24 +40,24 @@ class Judgement {
      */
     private fun winAndLose(
         playerHands: PlayerHands, winHandType: HandType, loseHandType: HandType
-    ): List<PlayerJudgeResult> {
+    ): PlayerJudgeResults {
 
         val winPlayerHands = playerHands.filterPlayerHands(winHandType)
         winPlayerHands.recordResult(MatchResultType.WIN)
-        val winPlayerJudgeResult = winPlayerHands.getPlayerJudgeResult(MatchResultType.WIN)
+        val winPlayerJudgeResults = winPlayerHands.getPlayerJudgeResult(MatchResultType.WIN)
 
         val losePlayerHands = playerHands.filterPlayerHands(loseHandType)
         losePlayerHands.recordResult(MatchResultType.LOSE)
-        val losePlayerJudgeResult = losePlayerHands.getPlayerJudgeResult(MatchResultType.LOSE)
+        val losePlayerJudgeResults = losePlayerHands.getPlayerJudgeResult(MatchResultType.LOSE)
 
-        return winPlayerJudgeResult.plus(losePlayerJudgeResult)
+        return winPlayerJudgeResults.plus(losePlayerJudgeResults)
     }
 
 
     /**
      * 引き分け処理を行う
      */
-    private fun draw(playerHands: PlayerHands): List<PlayerJudgeResult> {
+    private fun draw(playerHands: PlayerHands): PlayerJudgeResults {
         // 引き分け処理を各プレイヤーで記録する
         playerHands.recordResult(MatchResultType.DRAW)
         return playerHands.getPlayerJudgeResult(MatchResultType.DRAW)

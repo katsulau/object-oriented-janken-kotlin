@@ -1,7 +1,9 @@
-enum class HandType {
-    PAPER,
-    ROCK,
-    SCISSORS;
+enum class HandType(
+    val japaneseName: String
+) {
+    PAPER("パー"),
+    ROCK("グー"),
+    SCISSORS("チョキ");
 
     companion object {
         /**
