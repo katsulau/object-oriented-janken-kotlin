@@ -4,12 +4,13 @@ class Facilitator(
     private val ranking: Ranking
 ) {
     fun startJanken() {
-
+        println("じゃんけんによる順位決めを開始します")
         val jankenPlayerGroup = JankenPlayerGroup(players)
         match(jankenPlayerGroup)
 
+        println("じゃんけんによる順位決めが終了しました")
         // 順位表示
-        ranking.rank(players)
+        ranking.displayRank(players)
     }
 
     private fun match(jankenPlayerGroup: JankenPlayerGroup) {
@@ -26,11 +27,11 @@ class Facilitator(
             println("引き分け")
             // じゃんけんの手を出す
             println("じゃんけんポン!")
-            val nextPlayerHands = jankenPlayerGroup.showHands()
-            println(nextPlayerHands.getPlayerHands())
+            val playerNextHands = jankenPlayerGroup.showHands()
+            println(playerNextHands.getPlayerHands())
 
             // 勝敗確認
-            result = judgement.judge(nextPlayerHands)
+            result = judgement.judge(playerNextHands)
         }
 
         // 勝敗ごとでグループを分ける

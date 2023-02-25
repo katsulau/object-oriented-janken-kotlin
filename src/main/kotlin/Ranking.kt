@@ -2,7 +2,7 @@ import java.lang.StringBuilder
 
 class Ranking {
 
-    fun rank(players: List<Player>) {
+    fun displayRank(players: List<Player>) {
         val showPlayResults = mutableListOf<String>()
         val showPlayResultMap = mutableMapOf<String, Player>()
 
