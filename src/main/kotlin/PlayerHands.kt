@@ -13,7 +13,7 @@ class PlayerHands(
                 && playerHandTypeList.contains(HandType.SCISSORS)
     }
 
-    fun existsROCKAndSCISSORS(): Boolean {
+    fun existsRockAndScissors(): Boolean {
         val playerHandTypeList = values.map { it.value.second  }.toList()
         return playerHandTypeList.contains(HandType.ROCK)
                 && playerHandTypeList.contains(HandType.SCISSORS)

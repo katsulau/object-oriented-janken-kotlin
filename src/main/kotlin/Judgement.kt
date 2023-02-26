@@ -17,7 +17,7 @@ class Judgement {
 
 
         // グー、チョキの場合
-        if (playerHands.existsROCKAndSCISSORS()) {
+        if (playerHands.existsRockAndScissors()) {
             return winAndLose(playerHands, HandType.ROCK, HandType.SCISSORS)
         }
 
