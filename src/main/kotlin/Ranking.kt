@@ -12,11 +12,11 @@ class Ranking {
         }
 
 
-        showPlayResults.sorted()
+        val sortedResults = showPlayResults.sorted()
         val result = StringBuilder()
 
         var count = 1
-        showPlayResults.forEach {
+        sortedResults.forEach {
             val player = showPlayResultMap[it] ?: throw IllegalArgumentException("存在しないキーで取得処理がされています。 key: ${it}")
             result.append("${count}位: ${player.name}\n")
             count++
